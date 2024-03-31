@@ -1,0 +1,81 @@
+body {
+    background-color: #05091E;
+    margin: 0;
+    padding: 0;
+}
+
+#addWalletContainer {
+    padding-top: 25px;
+}
+
+#walletsContainer{
+    padding-top: 25px;
+}
+
+#walletsList{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Asegúrate de que los elementos estén alineados correctamente */
+    gap: 10px; /* Espacio entre carteras */
+}
+#showAddWalletButton{
+    order: -1;
+    width: 15rem; /* Ajusta para que coincida con el tamaño de las carteras */
+    height: 15vh; /* Ajusta para que coincida con la altura de las carteras */
+    margin-right: 10px; /* Asegura la separación del botón "New Wallet" */
+    margin-bottom: 25px;
+}
+
+.saveCancelButton{
+    margin-top: 20px;
+}
+
+.wallet-button {
+    width: 15rem; /* O el ancho que prefieras para que coincida con el botón "New Wallet" */
+    height: 15vh; /* O la altura que prefieras para que coincida con el botón "New Wallet" */
+    background-color: #2563eb; /* Color de fondo para coincidir con el botón "New Wallet" */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0; /* Ajusta el margen si es necesario */
+    padding: 0; /* Ajusta el relleno si es necesario */
+    border: none; /* Elimina el borde si lo hay */
+    border-radius: 0.5rem; /* Radio de borde para coincidir con el botón "New Wallet" */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave para efectos */
+
+}
+
+.wallet-button:hover {
+    background-color: #3b82f6; /* Color al pasar el mouse para coincidir con el botón "New Wallet" */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
+}
+
+
+.upperContainerClass{
+    margin: 50px;
+    color: white;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.upperContainerClass h2 {
+    font-size: 1rem;
+}
+
+.mainBodyContainerClass  {
+    margin: 50px;
+    color: white;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.hidden{
+    display: none;
+}

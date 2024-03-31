@@ -1,0 +1,243 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Elementos del DOM
+    const addWalletButton = document.getElementById("addWallet");
+    const walletName = document.getElementById("walletName");
+    const initialBalanceInput = document.getElementById("initialBalance");
+    const walletsList = document.getElementById("walletsList");
+    // Expenses
+    const expenseDescription = document.getElementById('expenseDescription');
+    const expenseAmount = document.getElementById('expenseAmount');
+    const expenseDate = document.getElementById('expenseDate');
+    const showAddWalletButton = document.getElementById('showAddWalletButton');
+    const addExpenseButtonContainer = document.getElementById('addExpenseButtonContainer');
+    const expenseForm = document.getElementById('expenseForm');
+    // Incomes
+    const incomeDescription = document.getElementById('incomeDescription');
+    const incomeAmount = document.getElementById('incomeAmount');
+    const incomeForm = document.getElementById('incomeForm');
+
+    let wallets = [];
+    let selectedWalletId = null;
+
+    // Mostrar formulario de agregar cartera
+    showAddWalletButton.addEventListener("click", function() {
+        document.getElementById('addWalletContainer').classList.toggle('hidden');
+    });
+
+    // Cancelar agregar gasto
+    document.getElementById('cancelWallet').addEventListener('click', function() {
+        addWalletContainer.classList.add('hidden');
+        // Opcionalmente, limpiar el formulario
+        walletName.value = '';
+        initialBalance.value = '';
+        });
+
+    // Agregar una cartera
+    addWalletButton.addEventListener("click", function () {
+        const wallet = {
+            id: Date.now(),
+            title: walletName.value,
+            balance: parseFloat(initialBalanceInput.value),
+            expenses: [],
+            incomes: [],
+            addExpense: function(description, amount) { // Corrección aquí
+                this.expenses.push({description, amount, date: new Date()});
+                this.balance -= amount;
+            },
+            addIncome: function(description, amount) { // Corrección aquí
+                this.incomes.push({description, amount, date: new Date()});
+                this.balance += amount;
+            }
+        };
+        wallets.push(wallet);
+
+        // Limpiar formulario
+        walletName.value = '';
+        initialBalanceInput.value = '';
+
+        updateWalletsList();
+        document.getElementById('addWalletContainer').classList.add('hidden');
+    });
+
+    // Mostrar formulario de gastos
+    function showExpenseForm(walletId) {
+        selectedWalletId = walletId;
+        expenseForm.classList.remove('hidden');        
+    }
+
+    function showIncomeForm(walletId) {
+        selectedWalletId = walletId;
+        incomeForm.classList.remove('hidden');
+    }
+
+    function showTransactionsForm(walletId) {
+        selectedWalletId = walletId;
+        transactionsForm.classList.remove('hidden');
+    }
+
+
+
+    // Guardar un gasto
+    document.getElementById('saveExpense').addEventListener('click', function() {
+        const description = expenseDescription.value;
+        const amount = parseFloat(expenseAmount.value);
+        const wallet = wallets.find(w => w.id === selectedWalletId);
+
+        if (wallet) {
+            wallet.addExpense(description, amount);
+            updateWalletsList();
+            updateWalletDetails();
+        } else {
+            console.error('No se pudo encontrar la cartera.');
+        }
+
+        // Limpiar formulario de gastos
+        expenseDescription.value = '';
+        expenseAmount.value = '';
+        expenseForm.classList.add('hidden');
+    });
+
+    // Cancelar agregar gasto
+    document.getElementById('cancelExpense').addEventListener('click', function() {
+    expenseForm.classList.add('hidden');
+    // Opcionalmente, limpiar el formulario
+    expenseDescription.value = '';
+    expenseAmount.value = '';
+    });
+
+
+    //Guardar ingreso
+    document.getElementById('saveIncome').addEventListener('click', function() {
+        const description = incomeDescription.value;
+        const amount = parseFloat(incomeAmount.value);
+        const wallet = wallets.find(w => w.id === selectedWalletId);
+
+        if (wallet) {
+            wallet.addIncome(description, amount);
+            updateWalletsList();
+            updateWalletDetails();
+        } else {
+            console.error('No se pudo encontrar la cartera.');
+        }
+
+        incomeDescription.value = '';
+        incomeAmount.value = '';
+        incomeForm.classList.add('hidden');
+    });
+
+    document.getElementById('cancelIncome').addEventListener('click', function() {
+        incomeForm.classList.add('hidden');
+        // Opcionalmente, limpiar el formulario
+        incomeDescription.value = '';
+        incomeAmount.value = '';
+    });
+
+    // Actualizar la lista de carteras
+function updateWalletsList() {
+    const walletDetailsInfo = document.getElementById("walletDetails-info");
+
+    walletDetailsInfo.innerHTML = '';
+    walletsList.innerHTML = '';
+    wallets.forEach(wallet => {
+        const li = document.createElement("li");
+        li.classList.add("wallet-button"); // Añadir clase para estilizar como botón
+        li.textContent = wallet.title; // Cambiar para mostrar solo el título
+
+
+        // Evento para mostrar el balance al pasar el mouse
+        li.addEventListener("mouseover", function() {
+            this.textContent = `$${wallet.balance.toFixed(2)}`;
+        });
+
+        // Evento para volver al nombre al quitar el mouse
+        li.addEventListener("mouseout", function() {
+            this.textContent = wallet.title;
+        });
+
+        li.addEventListener("click", function() {
+            showWalletDetails(wallet);
+        });
+    
+        walletsList.appendChild(li);
+     
+    });
+
+    if (!selectedWalletId) {
+        console.error('No hay una cartera seleccionada.');
+        return;
+    }
+    const wallet = wallets.find(w => w.id === selectedWalletId);
+
+    if (!wallet) {
+        console.error('No se pudo encontrar la cartera con ID:', selectedWalletId);
+        return; // Sal de la función si no se encuentra la cartera
+    }
+}
+
+function updateWalletDetails() {
+    const walletDetailsInfo = document.getElementById("walletDetails-info");
+    const wallet = wallets.find(w => w.id === selectedWalletId);
+    walletDetailsInfo.innerHTML = ''; // Limpiar la lista antes de agregar los nuevos detalles
+
+    
+    // Añadir los gastos a la lista
+    const expensesTitle = document.createElement('li');
+    expensesTitle.textContent = 'Expenses:';
+    walletDetailsInfo.appendChild(expensesTitle);
+
+    wallet.expenses.forEach(expense => {
+        const expenseItem = document.createElement('li');
+        expenseItem.textContent = `${expense.description}: $${expense.amount.toFixed(2)} - ${expense.date.toLocaleDateString()}`;
+        walletDetailsInfo.appendChild(expenseItem);
+    });
+
+    // Añadir un separador si hay tanto gastos como ingresos
+    if(wallet.expenses.length > 0 && wallet.incomes.length > 0) {
+        const separator = document.createElement('li');
+        separator.textContent = '---';
+        walletDetailsInfo.appendChild(separator);
+    }
+
+    // Añadir los ingresos a la lista
+    const incomesTitle = document.createElement('li');
+    incomesTitle.textContent = 'Incomes:';
+    walletDetailsInfo.appendChild(incomesTitle);
+
+    wallet.incomes.forEach(income => {
+        const incomeItem = document.createElement('li');
+        incomeItem.textContent = `${income.description}: $${income.amount.toFixed(2)} - ${income.date.toLocaleDateString()}`;
+        walletDetailsInfo.appendChild(incomeItem);
+    });
+}
+
+// Llamar a updateWalletDetails dentro de las funciones de guardar y después de seleccionar una cartera para ver sus detalles
+
+function showWalletDetails(wallet) {
+    // Asegúrate de que los elementos existen
+    const walletDetails = document.getElementById("walletDetails-buttons");
+    const addExpenseButton = document.getElementById("addExpenseButton");
+    const addIncomeButton = document.getElementById("addIncomeButton");
+    const addTransactionButton = document.getElementById("addTransactionButton");
+    const nameWallet = document.getElementById("nameWallet");
+
+    // Limpia el contenedor de detalles si es necesario
+    // walletDetails.innerHTML = ''; // Esto no es necesario ya que los botones ya están en el DOM
+    selectedWalletId = wallet.id;
+    nameWallet.innerText = wallet.title
+    // Hace visible los botones
+    addExpenseButton.classList.remove("hidden");
+    addIncomeButton.classList.remove("hidden");
+    addTransactionButton.classList.remove("hidden");
+
+    // Configura los eventos onclick para cada botón
+    addExpenseButton.onclick = function() { showExpenseForm(wallet.id); };
+    addIncomeButton.onclick = function() { showIncomeForm(wallet.id); };
+    addTransactionButton.onclick = function() { showTransactionsForm(wallet.id); };
+
+    // Asegúrate de que el contenedor de detalles no esté oculto
+    walletDetails.classList.remove("hidden");
+    // Actualiza los detalles de la cartera seleccionada
+    updateWalletDetails();
+}
+
+});
