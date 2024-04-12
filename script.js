@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             balance: parseFloat(initialBalanceInput.value),
             expenses: [],
             incomes: [],
+            transactions: [],
             addExpense: function(description, amount) { // Corrección aquí
                 this.expenses.push({description, amount, date: new Date()});
                 this.balance -= amount;
@@ -178,7 +179,28 @@ function updateWalletDetails() {
     walletDetailsInfo.innerHTML = ''; // Limpiar la lista antes de agregar los nuevos detalles
 
     
-    const expensesTitle = document.createElement('')
+    const expensesTitle = document.createElement('li');
+    expensesTitle.textContent = 'Expenses:';
+    walletDetailsInfo.appendChild(expensesTitle);
+
+    wallet.expenses.forEach((expense, index) => {
+        const expenseItem = document.createElement('li');
+        expenseItem.textContent = `${expense.description}: $${expense.amount.toFixed(2)} - ${expense.date.toLocaleDateString()}`;
+
+        // Botón eliminar
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Eliminar';
+        deleteButton.onclick = () => deleteExpense(index);
+
+        // Botón editar
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Editar';
+        editButton.onclick = () => editExpense(index);
+
+        expenseItem.appendChild(deleteButton);
+        expenseItem.appendChild(editButton);
+        walletDetailsInfo.appendChild(expenseItem);
+    });
 
     // Añadir los ingresos a la lista
     const incomesTitle = document.createElement('li');
@@ -204,30 +226,6 @@ function updateWalletDetails() {
         walletDetailsInfo.appendChild(incomeItem);
     });
 }
-function deleteExpense(index) {
-    // Aquí deberías eliminar el gasto del array de gastos y luego actualizar los detalles
-    console.log(`Eliminar gasto en el índice ${index}`);
-    updateWalletDetails(); // Llamar después de actualizar los datos
-}
-
-function editExpense(index) {
-    // Aquí deberías manejar la lógica de edición para un gasto
-    console.log(`Editar gasto en el índice ${index}`);
-    // Posiblemente mostrar un formulario para editar
-}
-
-function deleteIncome(index) {
-    // Similar a deleteExpense, pero para ingresos
-    console.log(`Eliminar ingreso en el índice ${index}`);
-    updateWalletDetails();
-}
-
-function editIncome(index) {
-    // Similar a editExpense, pero para ingresos
-    console.log(`Editar ingreso en el índice ${index}`);
-    // Mostrar un formulario para editar
-}
-
 // Llamar a updateWalletDetails dentro de las funciones de guardar y después de seleccionar una cartera para ver sus detalles
 
 function showWalletDetails(wallet) {

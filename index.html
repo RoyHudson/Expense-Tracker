@@ -60,16 +60,15 @@
                 </div>
         </section>
         <section class="mainBodyContainerClass">
-            <div>
-                <div class="wallet-details-container">
+          <div class="wallet-details-container">
                     <div id="walletDetails-buttons">
                       <h3 id="nameWallet"></h3>
                       <button id = "addExpenseButton" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50 hidden"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">Add Expense</span></button>
                       <button id = "addIncomeButton" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50 hidden"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">Add Income</span></button>
                       <button id = "addTransactionButton" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-500 px-6 font-medium text-neutral-50 hidden"><span class="absolute h-56 w-32 rounded-full bg-neutral-950 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span><span class="relative">Add Transaction</span></button>
                     </div>
-                </div>
-                  <div class="hidden" id="expenseForm">
+          </div>
+          <div class="hidden" id="expenseForm">
                     <h3 style="margin-top: 15px;">Add Expense</h3>
                     <div>
                       <label for="expenseDescription" class="block text-sm font-medium leading-6 text-gray-900" style="color:white">Description: </label>
@@ -102,82 +101,54 @@
                     </div>
                     <button type="button" id="saveExpense" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 saveCancelButton"><span class="absolute h-0 w-0 rounded-full bg-blue-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span><span class="relative">Save</span></button>
                     <button type="button" id="cancelExpense" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 saveCancelButton"><span class="absolute h-0 w-0 rounded-full bg-red-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span><span class="relative">Cancel</span></button>
-                </div>
-                <div class="hidden" id="incomeForm">
-                  <h3 style="margin-top: 15px;">Add Income</h3>         
-                  <div>
-                    <label for="incomeDescription" class="block text-sm font-medium leading-6 text-gray-900" style="color:white">Description: </label>
-                    <div class="relative mt-2 rounded-md shadow-sm">
-                      <input type="text" name="price" id="incomeDescription" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Name...">
-                    </div>
+          </div>
+          <div class="hidden" id="incomeForm">
+            <h3 style="margin-top: 15px;">Add Income</h3>         
+              <div>
+                <label for="incomeDescription" class="block text-sm font-medium leading-6 text-gray-900" style="color:white">Description: </label>
+                  <div class="relative mt-2 rounded-md shadow-sm">
+                    <input type="text" name="price" id="incomeDescription" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Name...">
                   </div>
-                  <div>
-                    <label for="incomeAmount" class="block text-sm font-medium leading-6 text-gray-900" style="color:white">Amount: </label>
-                    <div class="relative mt-2 rounded-md shadow-sm">
-                      <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <span class="text-gray-500 sm:text-sm">$</span>
-                      </div>
-                      <input type="text" name="price" id="incomeAmount" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00">
-                      <div class="absolute inset-y-0 right-0 flex items-center">
-                        <label for="currencyExpenses" class="sr-only">Currency</label>
-                        <select id="currencyIncome" name="currency" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
-                          <option>USD</option>
-                          <option>CAD</option>
-                          <option>EUR</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <label for="incomeDate" class="block text-sm font-medium leading-6 text-gray-900" style="color: white;">Date</label>
-                    <div class="relative mt-2 rounded-md shadow-sm">
-                      <input type="date" name="price" id="incomeDate" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Name...">
-                    </div>
-                  </div>
-                  <button type="button" id="saveIncome" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 saveCancelButton"><span class="absolute h-0 w-0 rounded-full bg-blue-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span><span class="relative">Save</span></button>
-                  <button type="button" id="cancelIncome" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 saveCancelButton"><span class="absolute h-0 w-0 rounded-full bg-red-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span><span class="relative">Cancel</span></button>
-                </div>
-                <div class="hidden" id="transactionForm">
-                  <h3 style="margin-top: 15px;">Add Transaction</h3>  
               </div>
-              <div class="flex min-h-screen items-center justify-center">
-                <div class="overflow-x-auto">
-                  <table id="walletDetails-info" class="min-w-full bg-white shadow-md rounded-xl">
-                    <thead>
-                      <tr class="bg-blue-gray-100 text-gray-700">
-                        <th class="py-3 px-4 text-left">Date</th>
-                        <th class="py-3 px-4 text-left">Wallet</th>
-                        <th class="py-3 px-4 text-left">Description</th>
-                        <th class="py-3 px-4 text-left">Total</th>
-                        <th class="py-3 px-4 text-left">Action</th>
-                        <th class="py-3 px-4 text-left">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody class="text-blue-gray-900">
-                      <tr class="border-b border-blue-gray-200">
-                        <td class="py-3 px-4">Company A</td>
-                        <td class="py-3 px-4">$50.25</td>
-                        <td class="py-3 px-4">100</td>
-                        <td class="py-3 px-4">$5025.00</td>
-                        <td class="py-3 px-4">
-                          <a href="#" class="font-medium text-blue-600 hover:text-blue-800">Edit</a>
-                        </td>
-                        <td class="py-3 px-4">
-                          <a href="#" class="font-medium text-blue-600 hover:text-blue-800">Delete</a>
-                        </td>
-                      </tr>
-                      <tr class="border-b border-blue-gray-200">
-                        <td class="py-3 px-4 font-medium">Total Wallet Value</td>
-                        <td class="py-3 px-4"></td>
-                        <td class="py-3 px-4"></td>
-                        <td class="py-3 px-4 font-medium">$22525.00</td>
-                        <td class="py-3 px-4"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div>
+                <label for="incomeAmount" class="block text-sm font-medium leading-6 text-gray-900" style="color:white">Amount: </label>
+                  <div class="relative mt-2 rounded-md shadow-sm">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <span class="text-gray-500 sm:text-sm">$</span>
+                    </div>
+                    <input type="text" name="price" id="incomeAmount" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00">
+                    <div class="absolute inset-y-0 right-0 flex items-center">
+                      <label for="currencyExpenses" class="sr-only">Currency</label>
+                      <select id="currencyIncome" name="currency" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                        <option>USD</option>
+                        <option>CAD</option>
+                        <option>EUR</option>
+                      </select>
+                    </div>
+                  </div>
               </div>
+              <div>
+                <label for="incomeDate" class="block text-sm font-medium leading-6 text-gray-900" style="color: white;">Date</label>
+                  <div class="relative mt-2 rounded-md shadow-sm">
+                    <input type="date" name="price" id="incomeDate" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Name...">
+                  </div>
+              </div>
+                <button type="button" id="saveIncome" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 saveCancelButton"><span class="absolute h-0 w-0 rounded-full bg-blue-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span><span class="relative">Save</span></button>
+                <button type="button" id="cancelIncome" class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 saveCancelButton"><span class="absolute h-0 w-0 rounded-full bg-red-500 transition-all duration-300 group-hover:h-56 group-hover:w-32"></span><span class="relative">Cancel</span></button>
+          </div>
+          <div class="hidden" id="transactionForm">
+            <h3 style="margin-top: 15px;">Add Transaction</h3>
+            <div>
+              <label for="location" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
+              <select id="location" name="location" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option>United States</option>
+                <option selected>Canada</option>
+                <option>Mexico</option>
+              </select>
             </div>
+          </div>
+          <div id="walletDetails-info">
+          </div>
         </section>
         <script src="script.js"></script>
     </body>
