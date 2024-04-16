@@ -159,17 +159,24 @@ document.addEventListener("DOMContentLoaded", function () {
     
             walletsList.appendChild(li);
         });
-    
+
         // Removido el chequeo que causaba el error
         if (selectedWalletId) {
             const wallet = wallets.find(w => w.id === selectedWalletId);
             if (wallet) {
                 updateWalletDetails(wallet); // Asegúrate de que esta función ahora acepte un parámetro `wallet`
+                updateWalletJson()
             }
         } else {
             console.log('No hay una cartera seleccionada para actualizar los detalles.');
             // Puedes optar por limpiar o mantener la última vista de detalles de cartera aquí.
         }
+
+    }
+
+    function updateWalletJson() {
+        const { writeDb } = require('.db/dbFunctions')
+        writeDb(wallets)
     }
 
 function updateWalletDetails() {
