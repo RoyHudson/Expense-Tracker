@@ -174,11 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    function updateWalletJson() {
-        const { writeDb } = require('.db/dbFunctions')
-        writeDb(wallets)
-    }
-
 function updateWalletDetails() {
     const walletDetailsInfo = document.getElementById("walletDetails-info");
     const wallet = wallets.find(w => w.id === selectedWalletId);

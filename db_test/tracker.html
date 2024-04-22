@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Expense Tracker 2.0</title>
+        <link rel="stylesheet" href="tracker.css">
+    </head>
+    <body>
+        <h1>Expense Tracker 2.0</h1>
+        <div>
+            <form id="formWallet">
+                <div>
+                    <label for="walletName">Wallet Name</label>
+                    <input id="walletName" type="text" name="Wallet Name" placeholder="Name Wallet">
+                </div>
+                <div>
+                    <label for="walletBalance">Balance</label>
+                    <input id="walletBalance" type="number" name="Balance" placeholder="Balance">
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div id="addExpenseContainer" class="">
+            <div>
+                <label for="expenseDescription">Description</label>
+                <input id="expenseDescription" type="text">
+            </div>
+            <div>
+                <label for="expenseAmount">Amount</label>
+                <input id="expenseAmount" type="number">
+            </div>
+            <div>
+                <label for="expenseDate">Date</label>
+                <input id="expenseDate" type="date">
+            </div>
+            
+        </div>
+        <script src="tracker-script.js"></script>
+    </body>
+
+</html>
