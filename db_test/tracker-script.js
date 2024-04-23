@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
+
+    wallets = [];
+
     const formWallet = document.getElementById('formWallet');
     formWallet.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -6,18 +9,36 @@ document.addEventListener('DOMContentLoaded', function(){
         let walletName = document.getElementById('walletName').value;
         let walletBalance = document.getElementById('walletBalance').value; 
 
-        const wallets = {
+        const wallet = {
             name: walletName,
             balance: walletBalance,
             expenses: [],
             incomes: [],
+            transactions: [],
             };
 
-        function addExpense (){
-            
-        }
+            console.log(wallet)
+            wallets.push(formWallet.wallet);
+            console.log(wallets);
+        // const formExpense = document.getElementById('addExpenseContainer');
+        // formExpense.addEventListener('submit', function(e) {
 
-        console.log(wallets)
+        //     let descriptionExpense = document.getElementById('descriptionExpense').value;
+        //     let amountExpense = document.getElementById('amountExpense').value;
+        //     let dateExpense = document.getElementById('dateExpense').value;
+
+        //     let expenses = {
+        //         description: descriptionExpense,
+        //         amount: amountExpense,
+        //         date: dateExpense,
+        //     };
+
+        //     wallets.push(expenses.description, expenses.amount, expenses.date);
+
+        //     console.log(expenses);
+
+        // });
+
     });
 });
 

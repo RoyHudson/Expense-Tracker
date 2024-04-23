@@ -1,6 +1,4 @@
 
-
-
 // Salvar informacion en MARIADB
 var mysql = require('mysql');
 
